@@ -3,6 +3,7 @@ class Wordlist:
         self.wordlist = []
 
     def fill(self):
-        with open("./wourdlist") as f:
-            self.wordlist.append(f.readline())
+        f = open("./wordlist.txt")
+        self.wordlist = [line.rstrip() for line in f.readlines()]
+        f.close()
 
