@@ -1,4 +1,4 @@
-def verify(wl, answer, usr):
+def get_verifying_table(wl, answer, usr):
     list_verifier = []
 
     if usr not in wl.wordlist:
@@ -25,3 +25,22 @@ def verify(wl, answer, usr):
         index += 1
 
     return list_verifier
+
+
+def verify(wl, answer):
+    verifying_table = None
+
+    while True:
+        usr = input("> ")
+        try:
+            verifying_table = get_verifying_table(wl, answer, usr)
+        except ValueError:
+            print("Not in worldlist")
+
+        if verifying_table is not None:
+            if all([pair[1] == "GREEN" for pair in verifying_table]):
+                print("Gagné !")
+                break
+
+        if verifying_table is not None:
+            print([pair[1] for pair in verifying_table])
